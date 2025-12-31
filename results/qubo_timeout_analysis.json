@@ -1,0 +1,152 @@
+[
+{
+  "n": 8,
+  "timeout_ms": 5000,
+  "solution_time": 0.074664,
+  "total_time": 5.467642307281494,
+  "objective": 0.0,
+  "valid": true,
+  "solved": true
+}
+,
+{
+  "n": 15,
+  "timeout_ms": 5000,
+  "solution_time": 0.05902,
+  "total_time": 5.322227954864502,
+  "objective": 0.0,
+  "valid": true,
+  "solved": true
+}
+,
+{
+  "n": 20,
+  "timeout_ms": 5000,
+  "solution_time": 0.05393,
+  "total_time": 5.267469882965088,
+  "objective": 0.0,
+  "valid": true,
+  "solved": true
+}
+,
+{
+  "n": 25,
+  "timeout_ms": 5000,
+  "solution_time": 0.063115,
+  "total_time": 5.351130962371826,
+  "objective": 0.0,
+  "valid": true,
+  "solved": true
+}
+,
+{
+  "n": 30,
+  "timeout_ms": 5000,
+  "solution_time": 0.063141,
+  "total_time": 5.333447217941284,
+  "objective": 0.0,
+  "valid": true,
+  "solved": true
+}
+,
+{
+  "n": 8,
+  "timeout_ms": 10000,
+  "solution_time": 0.075036,
+  "total_time": 10.345282793045044,
+  "objective": 0.0,
+  "valid": true,
+  "solved": true
+}
+,
+{
+  "n": 15,
+  "timeout_ms": 10000,
+  "solution_time": 0.059159,
+  "total_time": 10.287694931030273,
+  "objective": 0.0,
+  "valid": true,
+  "solved": true
+}
+,
+{
+  "n": 20,
+  "timeout_ms": 10000,
+  "solution_time": 0.0539,
+  "total_time": 10.29319977760315,
+  "objective": 0.0,
+  "valid": true,
+  "solved": true
+}
+,
+{
+  "n": 25,
+  "timeout_ms": 10000,
+  "solution_time": 0.063131,
+  "total_time": 10.240933895111084,
+  "objective": 0.0,
+  "valid": true,
+  "solved": true
+}
+,
+{
+  "n": 30,
+  "timeout_ms": 10000,
+  "solution_time": 0.072801,
+  "total_time": 10.29460597038269,
+  "objective": 0.0,
+  "valid": true,
+  "solved": true
+}
+,
+{
+  "n": 8,
+  "timeout_ms": 30000,
+  "solution_time": 0.074613,
+  "total_time": 30.465893745422363,
+  "objective": 0.0,
+  "valid": true,
+  "solved": true
+}
+,
+{
+  "n": 15,
+  "timeout_ms": 30000,
+  "solution_time": 0.058909,
+  "total_time": 30.357263803482056,
+  "objective": 0.0,
+  "valid": true,
+  "solved": true
+}
+,
+{
+  "n": 20,
+  "timeout_ms": 30000,
+  "solution_time": 0.054252,
+  "total_time": 30.287015199661255,
+  "objective": 0.0,
+  "valid": true,
+  "solved": true
+}
+,
+{
+  "n": 25,
+  "timeout_ms": 30000,
+  "solution_time": 0.063012,
+  "total_time": 30.31692600250244,
+  "objective": 0.0,
+  "valid": true,
+  "solved": true
+}
+,
+{
+  "n": 30,
+  "timeout_ms": 30000,
+  "solution_time": 0.063126,
+  "total_time": 30.267603874206543,
+  "objective": 0.0,
+  "valid": true,
+  "solved": true
+}
+
+]

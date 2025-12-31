@@ -1,0 +1,106 @@
+[
+  {
+    "n": 8,
+    "time": 0.122,
+    "time_ms": 122,
+    "status": "SOLVED",
+    "solver": "gecode"
+  }
+,
+  {
+    "n": 10,
+    "time": 0.11,
+    "time_ms": 110,
+    "status": "SOLVED",
+    "solver": "gecode"
+  }
+,
+  {
+    "n": 15,
+    "time": 0.115,
+    "time_ms": 115,
+    "status": "SOLVED",
+    "solver": "gecode"
+  }
+,
+  {
+    "n": 20,
+    "time": 0.118,
+    "time_ms": 118,
+    "status": "SOLVED",
+    "solver": "gecode"
+  }
+,
+  {
+    "n": 25,
+    "time": 0.121,
+    "time_ms": 121,
+    "status": "SOLVED",
+    "solver": "gecode"
+  }
+,
+  {
+    "n": 30,
+    "time": 0.126,
+    "time_ms": 126,
+    "status": "SOLVED",
+    "solver": "gecode"
+  }
+,
+  {
+    "n": 40,
+    "time": 0.137,
+    "time_ms": 137,
+    "status": "SOLVED",
+    "solver": "gecode"
+  }
+,
+  {
+    "n": 50,
+    "time": 0.146,
+    "time_ms": 146,
+    "status": "SOLVED",
+    "solver": "gecode"
+  }
+,
+  {
+    "n": 60,
+    "time": 0.16,
+    "time_ms": 160,
+    "status": "SOLVED",
+    "solver": "gecode"
+  }
+,
+  {
+    "n": 70,
+    "time": 0.179,
+    "time_ms": 179,
+    "status": "SOLVED",
+    "solver": "gecode"
+  }
+,
+  {
+    "n": 80,
+    "time": 0.19,
+    "time_ms": 190,
+    "status": "SOLVED",
+    "solver": "gecode"
+  }
+,
+  {
+    "n": 90,
+    "time": 0.22,
+    "time_ms": 220,
+    "status": "SOLVED",
+    "solver": "gecode"
+  }
+,
+  {
+    "n": 100,
+    "time": 0.242,
+    "time_ms": 242,
+    "status": "SOLVED",
+    "solver": "gecode"
+  }
+
+]

@@ -1,0 +1,13 @@
+{
+  "name": "Gecode",
+  "version": "6.2.0",
+  "id": "org.gecode.gecode",
+  "executable": "gecode",
+  "tags": ["cp", "int", "set", "float"],
+  "stdFlags": ["-a", "-f", "-n", "-s", "-t"],
+  "supportsMzn": true,
+  "supportsFzn": true,
+  "needsSolns2Out": true,
+  "needsMznExecutable": false,
+  "isGUIApplication": false
+}

@@ -1,0 +1,14 @@
+n,time_ms,status,solver
+8,122,SOLVED,gecode
+10,110,SOLVED,gecode
+15,115,SOLVED,gecode
+20,118,SOLVED,gecode
+25,121,SOLVED,gecode
+30,126,SOLVED,gecode
+40,137,SOLVED,gecode
+50,146,SOLVED,gecode
+60,160,SOLVED,gecode
+70,179,SOLVED,gecode
+80,190,SOLVED,gecode
+90,220,SOLVED,gecode
+100,242,SOLVED,gecode
