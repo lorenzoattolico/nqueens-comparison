@@ -17,15 +17,6 @@ Algorithm:
    - Select random queen with conflicts
    - Move to column position that minimizes total conflicts
 3. Restart from new random configuration if iteration limit reached
-
-Key Observation:
-Iteration count does NOT grow monotonically with problem size due to
-increasing solution density in the search space for larger n.
-
-Example:
-- n=10: avg 4093 iterations
-- n=20: avg 73 iterations (fewer!)
-- n=100: avg 149 iterations
 """
 
 import sys

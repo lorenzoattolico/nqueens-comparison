@@ -17,14 +17,8 @@ minimize: w·(row_penalties + col_penalties + diag_penalties + antidiag_penaltie
 where each penalty is a quadratic term enforcing constraints.
 
 Key Parameters:
-- Penalty weight: 10.0 (empirically validated)
-- Timeout: 5000ms (5 seconds) - CRITICAL for scalability
-
-Critical Discovery:
-Solution discovery time (~50-80ms) is INDEPENDENT of timeout setting.
-Extended annealing provides no benefit for constraint satisfaction problems.
-Reducing timeout from 60s to 5s enables scaling to n=100 while maintaining
-100% success rate.
+- Penalty weight: 10.0
+- Timeout: 5000ms (5 seconds)
 """
 
 import sys
