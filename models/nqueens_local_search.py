@@ -1,28 +1,97 @@
 #!/usr/bin/env python3
 """
-N-Queens Problem - Local Search with Min-Conflicts Heuristic
+N-Queens Problem - Local Search with Min-Conflicts Heuristic (Optimized)
 Author: Lorenzo Domenico Attolico
 Student ID: 48259726
 
-Min-Conflicts heuristic (Minton et al., 1992) with permutation representation.
+Min-Conflicts heuristic (Minton et al., 1992) with optimized implementation.
 
 Representation:
 - board[i] = column position of queen in row i
 - Permutation implicitly satisfies row and column constraints
 - Only diagonal conflicts need to be minimized
 
+Optimization (as per Minton et al. 1992):
+- Frequency arrays for O(1) conflict evaluation
+- diag_conflicts[d]: number of queens on diagonal d (where d = row - col + n - 1)
+- antidiag_conflicts[a]: number of queens on anti-diagonal a (where a = row + col)
+
 Algorithm:
-1. Initialize: random permutation (one queen per row, all different columns)
+1. Initialize: random permutation with frequency arrays
 2. While conflicts exist and within iteration limit:
-   - Select random queen with conflicts
-   - Move to column position that minimizes total conflicts
+   - Select queen with MOST conflicts (as per Lecture 7)
+   - Swap with position that minimizes total conflicts
 3. Restart from new random configuration if iteration limit reached
+
+Complexity: O(n) per iteration
 """
 
 import sys
 import time
 import random
 import numpy as np
+
+
+class MinConflictsBoard:
+    """
+    Optimized board representation with frequency arrays for O(1) conflict checking.
+    """
+    
+    def __init__(self, n):
+        """Initialize with random permutation and frequency arrays."""
+        self.n = n
+        self.board = np.random.permutation(n).tolist()
+        
+        # Frequency arrays for O(1) conflict lookup
+        self.diag_conflicts = [0] * (2 * n - 1)
+        self.antidiag_conflicts = [0] * (2 * n - 1)
+        
+        # Initialize frequency arrays
+        for row in range(n):
+            col = self.board[row]
+            self.diag_conflicts[row - col + n - 1] += 1
+            self.antidiag_conflicts[row + col] += 1
+    
+    def conflicts_at(self, row, col):
+        """Count conflicts for a queen at position (row, col). O(1)"""
+        diag_idx = row - col + self.n - 1
+        antidiag_idx = row + col
+        return max(0, self.diag_conflicts[diag_idx] + 
+                   self.antidiag_conflicts[antidiag_idx] - 2)
+    
+    def total_conflicts(self):
+        """Calculate total number of attacking pairs. O(n)"""
+        total = 0
+        for count in self.diag_conflicts:
+            if count > 1:
+                total += count * (count - 1) // 2
+        for count in self.antidiag_conflicts:
+            if count > 1:
+                total += count * (count - 1) // 2
+        return total
+    
+    def swap_queens(self, row1, row2):
+        """Swap queens in two rows, updating frequency arrays. O(1)"""
+        if row1 == row2:
+            return
+        
+        col1 = self.board[row1]
+        col2 = self.board[row2]
+        
+        # Remove both queens
+        self.diag_conflicts[row1 - col1 + self.n - 1] -= 1
+        self.antidiag_conflicts[row1 + col1] -= 1
+        self.diag_conflicts[row2 - col2 + self.n - 1] -= 1
+        self.antidiag_conflicts[row2 + col2] -= 1
+        
+        # Swap
+        self.board[row1], self.board[row2] = self.board[row2], self.board[row1]
+        
+        # Add back in new positions
+        self.diag_conflicts[row1 - col2 + self.n - 1] += 1
+        self.antidiag_conflicts[row1 + col2] += 1
+        self.diag_conflicts[row2 - col1 + self.n - 1] += 1
+        self.antidiag_conflicts[row2 + col1] += 1
 
 
 def count_conflicts(board, n):
@@ -77,42 +146,44 @@ def count_conflicts_for_queen(board, row, n):
     return conflicts
 
 
-def get_best_column(board, row, n):
+def get_best_swap(board_state, row):
     """
-    Find column position that minimizes conflicts for given row.
+    Find best row to swap with to minimize conflicts.
+    Uses swap strategy to maintain permutation property.
     
     Args:
-        board: Current board configuration
-        row: Row to optimize
-        n: Board size
+        board_state: MinConflictsBoard object
+        row: Row to find best swap for
         
     Returns:
-        int: Best column position (random choice among ties)
+        int: Best row to swap with (random choice among ties)
     """
     min_conflicts = float('inf')
-    best_columns = []
+    best_swaps = []
     
-    current_col = board[row]
+    current_col = board_state.board[row]
     
-    # Try all possible column positions
-    for col in range(n):
-        # Temporarily move queen to this column
-        board[row] = col
+    # Try swapping with each other row
+    for other_row in range(board_state.n):
+        other_col = board_state.board[other_row]
         
-        # Count resulting conflicts
-        conflicts = count_conflicts_for_queen(board, row, n)
+        # Temporarily swap
+        board_state.swap_queens(row, other_row)
+        
+        # Count conflicts for both affected queens
+        conflicts = (board_state.conflicts_at(row, other_col) + 
+                    board_state.conflicts_at(other_row, current_col))
         
         if conflicts < min_conflicts:
             min_conflicts = conflicts
-            best_columns = [col]
+            best_swaps = [other_row]
         elif conflicts == min_conflicts:
-            best_columns.append(col)
+            best_swaps.append(other_row)
+        
+        # Swap back
+        board_state.swap_queens(row, other_row)
     
-    # Restore original position
-    board[row] = current_col
-    
-    # Return random best column (tie-breaking)
-    return random.choice(best_columns)
+    return random.choice(best_swaps)
 
 
 def solve_min_conflicts(n, max_iterations=10000, max_restarts=100):
@@ -133,32 +204,38 @@ def solve_min_conflicts(n, max_iterations=10000, max_restarts=100):
     """
     
     for restart in range(max_restarts):
-        # Random initialization: permutation ensures row/column constraints
-        board = np.random.permutation(n)
+        # Initialize board with frequency arrays
+        board_state = MinConflictsBoard(n)
         
         for iteration in range(max_iterations):
             # Check if solution found
-            conflicts = count_conflicts(board, n)
+            if board_state.total_conflicts() == 0:
+                return np.array(board_state.board), iteration + 1, restart + 1, True
             
-            if conflicts == 0:
-                return board.copy(), iteration + 1, restart + 1, True
+            # Find queen(s) with MOST conflicts (as per Lecture 7)
+            max_conf = 0
+            most_conflicted_queens = []
             
-            # Find all queens with conflicts
-            conflicted_queens = []
             for row in range(n):
-                if count_conflicts_for_queen(board, row, n) > 0:
-                    conflicted_queens.append(row)
+                conf = board_state.conflicts_at(row, board_state.board[row])
+                if conf > max_conf:
+                    max_conf = conf
+                    most_conflicted_queens = [row]
+                elif conf == max_conf and conf > 0:
+                    most_conflicted_queens.append(row)
             
-            if not conflicted_queens:
+            if not most_conflicted_queens:
                 # Should not happen if conflicts > 0, but safeguard
                 continue
             
-            # Select random conflicted queen
-            row = random.choice(conflicted_queens)
+            # Select the most conflicting queen (random among ties)
+            row = random.choice(most_conflicted_queens)
             
-            # Move to column that minimizes conflicts
-            best_col = get_best_column(board, row, n)
-            board[row] = best_col
+            # Find best row to swap with
+            best_swap_row = get_best_swap(board_state, row)
+            
+            # Perform the swap
+            board_state.swap_queens(row, best_swap_row)
     
     # Failed after all restarts
     return None, max_iterations * max_restarts, max_restarts, False

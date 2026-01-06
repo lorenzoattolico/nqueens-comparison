@@ -37,8 +37,8 @@ constraint alldifferent([q[i] + i | i in 1..n]);
 % q[i] - i must be different for all i
 constraint alldifferent([q[i] - i | i in 1..n]);
 
-% Search strategy: first-fail with median value selection
-solve :: int_search(q, first_fail, indomain_median, complete) satisfy;
+% Search strategy: first-fail with minimum value selection (as in Lecture 3)
+solve :: int_search(q, first_fail, indomain_min) satisfy;
 
 % Output: Display solution array and board
 output [

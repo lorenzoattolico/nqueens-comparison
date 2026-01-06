@@ -5,8 +5,6 @@
 
 set -e
 
-export AMPLIFY_TOKEN="AE/0dEHTizNQ2sDganC2KKPCZjs75CUj2nA"
-
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PROJECT_ROOT="$( cd "$SCRIPT_DIR/.." && pwd )"
 cd "$PROJECT_ROOT"

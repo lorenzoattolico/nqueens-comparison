@@ -11,8 +11,6 @@
 % - At most one queen per diagonal
 % - At most one queen per anti-diagonal
 
-include "globals.mzn";
-
 % Problem size parameter
 int: n;
 

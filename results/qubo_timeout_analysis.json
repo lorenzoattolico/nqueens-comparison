@@ -2,8 +2,8 @@
 {
   "n": 8,
   "timeout_ms": 5000,
-  "solution_time": 0.074664,
-  "total_time": 5.467642307281494,
+  "solution_time": 0.07494,
+  "total_time": 5.540630102157593,
   "objective": 0.0,
   "valid": true,
   "solved": true
@@ -12,8 +12,8 @@
 {
   "n": 15,
   "timeout_ms": 5000,
-  "solution_time": 0.05902,
-  "total_time": 5.322227954864502,
+  "solution_time": 0.058898,
+  "total_time": 5.52662205696106,
   "objective": 0.0,
   "valid": true,
   "solved": true
@@ -22,8 +22,8 @@
 {
   "n": 20,
   "timeout_ms": 5000,
-  "solution_time": 0.05393,
-  "total_time": 5.267469882965088,
+  "solution_time": 0.062226,
+  "total_time": 5.40908408164978,
   "objective": 0.0,
   "valid": true,
   "solved": true
@@ -32,8 +32,8 @@
 {
   "n": 25,
   "timeout_ms": 5000,
-  "solution_time": 0.063115,
-  "total_time": 5.351130962371826,
+  "solution_time": 0.063146,
+  "total_time": 5.3174309730529785,
   "objective": 0.0,
   "valid": true,
   "solved": true
@@ -42,8 +42,8 @@
 {
   "n": 30,
   "timeout_ms": 5000,
-  "solution_time": 0.063141,
-  "total_time": 5.333447217941284,
+  "solution_time": 0.063248,
+  "total_time": 5.511088848114014,
   "objective": 0.0,
   "valid": true,
   "solved": true
@@ -52,8 +52,8 @@
 {
   "n": 8,
   "timeout_ms": 10000,
-  "solution_time": 0.075036,
-  "total_time": 10.345282793045044,
+  "solution_time": 0.074603,
+  "total_time": 10.366405725479126,
   "objective": 0.0,
   "valid": true,
   "solved": true
@@ -62,8 +62,8 @@
 {
   "n": 15,
   "timeout_ms": 10000,
-  "solution_time": 0.059159,
-  "total_time": 10.287694931030273,
+  "solution_time": 0.058875,
+  "total_time": 10.310174942016602,
   "objective": 0.0,
   "valid": true,
   "solved": true
@@ -72,8 +72,8 @@
 {
   "n": 20,
   "timeout_ms": 10000,
-  "solution_time": 0.0539,
-  "total_time": 10.29319977760315,
+  "solution_time": 0.053957,
+  "total_time": 10.307019710540771,
   "objective": 0.0,
   "valid": true,
   "solved": true
@@ -82,8 +82,8 @@
 {
   "n": 25,
   "timeout_ms": 10000,
-  "solution_time": 0.063131,
-  "total_time": 10.240933895111084,
+  "solution_time": 0.063267,
+  "total_time": 10.410486936569214,
   "objective": 0.0,
   "valid": true,
   "solved": true
@@ -92,8 +92,8 @@
 {
   "n": 30,
   "timeout_ms": 10000,
-  "solution_time": 0.072801,
-  "total_time": 10.29460597038269,
+  "solution_time": 0.06307,
+  "total_time": 10.354596138000488,
   "objective": 0.0,
   "valid": true,
   "solved": true
@@ -102,8 +102,8 @@
 {
   "n": 8,
   "timeout_ms": 30000,
-  "solution_time": 0.074613,
-  "total_time": 30.465893745422363,
+  "solution_time": 0.074587,
+  "total_time": 30.296863317489624,
   "objective": 0.0,
   "valid": true,
   "solved": true
@@ -112,8 +112,8 @@
 {
   "n": 15,
   "timeout_ms": 30000,
-  "solution_time": 0.058909,
-  "total_time": 30.357263803482056,
+  "solution_time": 0.058938,
+  "total_time": 30.268404006958008,
   "objective": 0.0,
   "valid": true,
   "solved": true
@@ -122,8 +122,8 @@
 {
   "n": 20,
   "timeout_ms": 30000,
-  "solution_time": 0.054252,
-  "total_time": 30.287015199661255,
+  "solution_time": 0.053852,
+  "total_time": 30.337265014648438,
   "objective": 0.0,
   "valid": true,
   "solved": true
@@ -132,8 +132,8 @@
 {
   "n": 25,
   "timeout_ms": 30000,
-  "solution_time": 0.063012,
-  "total_time": 30.31692600250244,
+  "solution_time": 0.072771,
+  "total_time": 30.33702778816223,
   "objective": 0.0,
   "valid": true,
   "solved": true
@@ -142,8 +142,8 @@
 {
   "n": 30,
   "timeout_ms": 30000,
-  "solution_time": 0.063126,
-  "total_time": 30.267603874206543,
+  "solution_time": 0.063218,
+  "total_time": 30.352307081222534,
   "objective": 0.0,
   "valid": true,
   "solved": true
