@@ -30,54 +30,53 @@ Comparative implementation and analysis of four algorithmic approaches to solvin
 
 ### Performance at n=100
 
-| Method | Time (s) | Growth (8→100) | Variables | Scaling |
-|--------|----------|----------------|-----------|---------|
-| **Local Search** | 0.131 | 50.4× | 100 | Super-linear |
-| **QUBO (discovery)** | 0.145 | 1.94× | 10,000 | Near-constant ⭐ |
-| **Integer** | 0.254 | 2.15× | 100 | Near-constant ⭐ |
-| **Boolean** | 2.383 | 9.57× | 10,000 | Sub-quadratic |
-| **QUBO (total)** | 5.596 | 1.04× | 10,000 | API overhead |
+| Method | Time (s) | Growth (8→100) |
+|--------|----------|----------------|
+| **Local Search** | 0.00393 | 1.29× |
+| **QUBO (discovery)** | 0.145 | 1.65× |
+| **Integer** | 0.263 | 2.04× |
+| **Boolean** | 2.473 | 9.48× |
+| **QUBO (total)** | 5.852 | 1.07× |
+
+*Growth factor represents scaling from n=8 to n=100 (12.5× board size increase)*
 
 ### Main Findings
 
-- **Integer Model**: Exceptional near-constant scaling (2.15×) validates power of global constraints
-- **QUBO Model**: Rapid discovery (0.145s) with near-constant algorithmic growth (1.94×), but total time dominated by cloud API (~5.5s)
-- **Local Search**: Fastest for small instances (n ≤ 40), but super-linear scaling (50.4×)
-- **Boolean Model**: Sub-quadratic scaling (9.57×) demonstrates modern MIP solver capability
+- **Integer Model**: 2.04× growth validates power of global constraints and specialized propagation
+- **QUBO Model**: Competitive algorithmic performance (0.145s discovery, 1.65× growth), total time dominated by cloud API (~5.9s)
+- **Local Search**: Fastest absolute times with optimized implementation (1.29× growth)
+- **Boolean Model**: 9.48× growth despite 156× variable increase demonstrates MIP solver capability
 
 ---
 
 ## Complete Results
 
-| n | Boolean | Integer | QUBO (discovery) | QUBO (total) | Local Search | LS Iters |
-|---|---------|---------|-----------------|--------------|--------------|----------|
-| 8 | 0.249 | 0.118 | 0.075 | 5.394 | 0.003 | 5.4 |
-| 10 | 0.149 | 0.112 | 0.059 | 5.345 | 0.001 | 6.5 |
-| 15 | 0.164 | 0.114 | 0.059 | 5.345 | 0.001 | 7.3 |
-| 20 | 0.188 | 0.118 | 0.055 | 5.360 | 0.003 | 10.2 |
-| 25 | 0.179 | 0.120 | 0.063 | 5.325 | 0.004 | 12.5 |
-| 30 | 0.202 | 0.125 | 0.063 | 5.309 | 0.007 | 14.7 |
-| 40 | 0.246 | 0.222 | 0.070 | 5.338 | 0.014 | 19.6 |
-| 50 | 0.489 | 0.176 | 0.083 | 5.450 | 0.022 | 21.5 |
-| 60 | 0.885 | 0.230 | 0.100 | 5.625 | 0.033 | 26.3 |
-| 70 | 0.899 | 0.200 | 0.124 | 5.876 | 0.052 | 32.4 |
-| 80 | 1.164 | 0.199 | 0.101 | 5.730 | 0.071 | 36.6 |
-| 90 | 1.419 | 0.215 | 0.119 | 5.671 | 0.096 | 40.9 |
-| 100 | 2.383 | 0.254 | 0.145 | 5.596 | 0.131 | 45.7 |
+| n | Boolean | Integer | QUBO (sol) | QUBO (tot) | Local Search | LS Iters |
+|---|---------|---------|------------|------------|--------------|----------|
+| 8 | 0.261 | 0.129 | 0.088 | 5.457 | 0.00304 | 10.1 |
+| 10 | 0.152 | 0.111 | 0.068 | 5.839 | 0.00132 | 16.1 |
+| 15 | 0.162 | 0.112 | 0.059 | 5.316 | 0.00116 | 12.6 |
+| 20 | 0.191 | 0.117 | 0.054 | 5.268 | 0.00161 | 16.7 |
+| 25 | 0.183 | 0.120 | 0.063 | 5.408 | 0.00226 | 14.6 |
+| 30 | 0.209 | 0.121 | 0.069 | 5.424 | 0.00248 | 20.2 |
+| 40 | 0.256 | 0.134 | 0.070 | 5.507 | 0.00205 | 18.3 |
+| 50 | 0.512 | 0.150 | 0.083 | 5.693 | 0.00230 | 21.6 |
+| 60 | 0.937 | 0.161 | 0.100 | 5.564 | 0.00357 | 25.9 |
+| 70 | 0.936 | 0.178 | 0.139 | 5.547 | 0.00231 | 27.7 |
+| 80 | 1.205 | 0.203 | 0.101 | 5.788 | 0.00377 | 29.5 |
+| 90 | 1.485 | 0.223 | 0.119 | 5.917 | 0.00600 | 32.0 |
+| 100 | 2.473 | 0.263 | 0.145 | 5.852 | 0.00393 | 33.7 |
 
-*All times in seconds. QUBO shows both discovery time (internal) and total time (wall-clock). Local Search averaged over 10 trials.*
+*All times in seconds. QUBO shows solution discovery time and total execution time. Local Search averaged over 10 trials.*
 
 ---
 
 ## Repository Structure
-
 ```
-nqueens-comparative-study/
+nqueens-comparison/
 │
 ├── README.md                      # This file
-│
-├── config/                        # Solver configurations
-│   └── gecode.msc
+├── report.pdf                     # Detailed analysis
 │
 ├── models/                        # Source implementations
 │   ├── nqueens_boolean.mzn
@@ -88,27 +87,17 @@ nqueens-comparative-study/
 ├── results/                       # Experimental data
 │   ├── boolean_results.csv
 │   ├── integer_results.csv
-│   ├── integer_results.json
 │   ├── qubo_results.json
-│   ├── qubo_timeout_analysis.json
 │   ├── local_search_results.json
 │   └── unified_results.csv
 │
 ├── figures/                       # Visualizations
-│   ├── fig_performance_comparison.png/pdf
-│   ├── fig_scalability_analysis.png/pdf
-│   ├── fig_local_search_details.png/pdf
-│   └── fig_qubo_timeout_analysis.png/pdf
+│   ├── fig_performance_comparison.png
+│   └── fig_scalability_analysis.png
 │
-├── scripts/                       # Experiment automation
-│   ├── analyze_results.py
-│   ├── run_all_experiments.sh
-│   ├── test_*.sh
-│   └── test_qubo_timeout_analysis.sh
-│
-└── solutions/                     # Example outputs
-    ├── solution_boolean_n*.txt
-    └── solution_integer_n*.txt
+└── scripts/                       # Experiment automation
+    ├── analyze_results.py
+    └── run_experiments.sh
 ```
 
 ---
@@ -120,7 +109,6 @@ nqueens-comparative-study/
 - **Fixstars Amplify SDK** (for QUBO experiments, requires free API token)
 
 ### Installation
-
 ```bash
 # MiniZinc
 brew install minizinc              # macOS
@@ -138,39 +126,28 @@ pip install amplify
 ---
 
 ## Running Experiments
-
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/nqueens-comparative-study.git
-cd nqueens-comparative-study
+git clone https://github.com/lorenzoattolico/nqueens-comparison.git
+cd nqueens-comparison
 
 # Configure Amplify token (for QUBO)
 export AMPLIFY_TOKEN="your_token_here"
 
-# Run experiments
-cd scripts
-chmod +x *.sh
-./run_all_experiments.sh
+# Run individual methods
+cd models
 
-# Generate figures
-cd ../results
-python3 ../scripts/analyze_results.py
-```
-
-### Individual Methods
-
-```bash
 # Boolean
-minizinc --solver cbc models/nqueens_boolean.mzn -D "n=20"
+minizinc --solver cbc nqueens_boolean.mzn -D "n=20"
 
 # Integer
-minizinc --solver gecode models/nqueens_integer.mzn -D "n=20"
+minizinc --solver gecode nqueens_integer.mzn -D "n=20"
 
 # QUBO
-python3 models/nqueens_qubo_amplify.py --n 20
+python3 nqueens_qubo_amplify.py --n 20
 
 # Local Search
-python3 models/nqueens_local_search.py --n 20 --trials 10
+python3 nqueens_local_search.py --n 20 --trials 10
 ```
 
 ---
@@ -179,78 +156,57 @@ python3 models/nqueens_local_search.py --n 20 --trials 10
 
 ### 1. Boolean Model (MiniZinc + COIN-BC)
 
-**Formulation:**
-- n² binary variables `board[i,j]`
-- Constraints: one queen per row/column, at most one per diagonal
+**Formulation:** n² binary variables with explicit row, column, and diagonal constraints
 
-**Performance:** 2.383s @ n=100, 9.57× growth
+**Performance:** 2.473s @ n=100, 9.48× growth (156× variable increase)
 
-**Best for:** Educational purposes, intuitive encoding
+**Solver:** COIN-BC branch-and-cut algorithm
 
 ---
 
 ### 2. Integer Model (MiniZinc + Gecode)
 
-**Formulation:**
-- n integer variables `q[i]` = column of queen in row i
-- Three `alldifferent` constraints (columns, diagonals, anti-diagonals)
+**Formulation:** n integer variables with three `alldifferent` global constraints
 
-**Performance:** 0.254s @ n=100, 2.15× growth (near-constant!)
+**Performance:** 0.263s @ n=100, 2.04× growth
 
-**Why fast:** Gecode's `alldifferent` uses Régin's matching-based propagation
-
-**Best for:** Large instances, production use
+**Solver:** Gecode with Régin's matching-based propagation for `alldifferent`
 
 ---
 
 ### 3. QUBO Model (Fixstars Amplify SDK)
 
-**Formulation:**
-- n² binary variables with penalty-based energy minimization
-- Penalty weight w = 10.0, timeout 5000ms
+**Formulation:** n² binary variables with penalty-based energy minimization (w = 10.0)
 
 **Performance:** 
-- Discovery: 0.145s @ n=100, 1.94× growth
-- Total: 5.596s @ n=100 (API overhead)
+- Solution discovery: 0.145s @ n=100, 1.65× growth
+- Total execution: 5.852s @ n=100 (includes API overhead)
 
-**Key insight:** Solutions found in first annealing cycle (~50-145ms), independent of timeout
-
-**Best for:** Quantum computing research, QUBO studies
+**Solver:** Fixstars Amplify Annealing Engine (quantum-inspired)
 
 ---
 
 ### 4. Local Search (Min-Conflicts)
 
-**Formulation:**
-- Permutation representation (implicit row/column satisfaction)
-- Min-conflicts heuristic with random restart
+**Formulation:** Permutation representation with frequency array optimization
 
-**Performance:** 0.131s @ n=100, 50.4× growth (super-linear)
+**Performance:** 0.00393s @ n=100, 1.29× growth
 
-**Interesting:** Iterations grow sub-linearly (8.5×) but total time super-linearly due to O(n) per-iteration cost
-
-**Best for:** Fast approximate solutions, small instances
-
----
-
-## Practical Recommendations
-
-| Use Case | Best Method | Why |
-|----------|-------------|-----|
-| **Large instances (n>50)** | Integer | Near-constant scaling |
-| **Completeness required** | Integer | Systematic search |
-| **Quick solutions (n≤40)** | Local Search | Fastest absolute time |
-| **QUBO research** | QUBO | Relevant formulation |
-| **Learning/teaching** | Boolean | Intuitive encoding |
+**Algorithm:** Min-conflicts heuristic with random restart (10,000 iterations max, 100 restarts)
 
 ---
 
 ## Experimental Setup
 
 - **Hardware:** MacBook Pro M3, 16GB RAM
-- **MiniZinc:** 2.9.4
-- **Python:** 3.14.2
+- **MiniZinc:** 2.8+
+- **Python:** 3.8+
 - **OS:** macOS
 
-All results are reproducible (MiniZinc deterministic, QUBO/LS stochastic within expected variance).
+All experiments conducted with 120-second timeouts for MiniZinc solvers and 5-second timeout for QUBO. Local search results averaged over 10 independent trials.
 
+---
+
+## License
+
+This project was completed as coursework for the University of Tokyo. Code is provided for educational and research purposes.
